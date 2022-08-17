@@ -9,7 +9,7 @@
 @if(!IsConnected) 
 {
     <div class="input-group">
-        <input @bind="username" class="form-control" placeholder="What is your name?" />
+        <input @bind="username" @onkeyup="HandleConnect" class="form-control" placeholder="What is your name?" />
         <button class="btn btn-primary form-control-append"
                 @onclick="Connect">
             Connect
@@ -73,6 +73,14 @@ else
         if(args.Key.Equals("Enter")) 
         {
             await Send();
+        }
+    }
+
+    private async Task HandleConnect(KeyboardEventArgs args)
+    {
+        if (args.Key.Equals("Enter"))
+        {
+            await Connect();
         }
     }
 
